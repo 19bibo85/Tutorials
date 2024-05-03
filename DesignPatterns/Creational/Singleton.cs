@@ -9,9 +9,15 @@ namespace DesignPatterns.Creational
     {
         private static IPlayer? _player;
 
-        private Singleton(IPlayer player) => _player ??= player;
-
-        public static void Create(IPlayer player) => _ = new Singleton(player);
+        private Singleton(IPlayer player)
+        {
+            if (_player == null)
+                _player = player;
+        }
+        public static void Create(IPlayer player)
+        {
+            _ = new Singleton(player);
+        }
 
         public static IPlayer? Player => _player;
     }    

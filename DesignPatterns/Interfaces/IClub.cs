@@ -1,6 +1,6 @@
 ﻿namespace DesignPatterns.Interfaces
 {
-    public interface IFootballClub
+    public interface IClub
     {
         ITeam CreateTeam();
 

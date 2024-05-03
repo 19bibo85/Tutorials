@@ -6,58 +6,46 @@ namespace DesignPatterns.Creational
     /// <summary>
     /// Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
     /// </summary>
-    public class ConcreteFootballClub : FootballClub, IFootballClub
+    public class ConcreteFootballClub : AbstractClub, IClub
     {
-        public ConcreteFootballClub(string name, DateTime founded, string owner, string country, string league, string stadiumName, int stadiumCapacity) : base(name, founded, owner, country, league, stadiumName, stadiumCapacity)
+        public ConcreteFootballClub(Club club) : base(club)
         {
         }
 
-        public ITeam CreateTeam() => new FootballTeam(_name, _country, _league);
+        public ITeam CreateTeam() => new FootballTeam(_club.Name, _club.Country, _club.League);
 
-        public IStadium CreateStadium() => new FootballStadium(_stadiumName, _stadiumCapacity);
+        public IStadium CreateStadium() => new FootballStadium(_club.StadiumName, _club.StadiumCapacity);
     }
 
-    public class ConcreteBasketballClub : FootballClub, IFootballClub
+    public class ConcreteBasketballClub : AbstractClub, IClub
     {
-        public ConcreteBasketballClub(string name, DateTime founded, string owner, string country, string league, string stadiumName, int stadiumCapacity) : base(name, founded, owner, country, league, stadiumName, stadiumCapacity)
+        public ConcreteBasketballClub(Club club) : base(club)
         {
         }
 
-        public ITeam CreateTeam() => new BasketballTeam(_name, _country, _league);
+        public ITeam CreateTeam() => new BasketballTeam(_club.Name, _club.Country, _club.League);
 
-        public IStadium CreateStadium() => new BasketballStadium(_stadiumName, _stadiumCapacity);
+        public IStadium CreateStadium() => new BasketballStadium(_club.StadiumName, _club.StadiumCapacity);
     }
 
 
-    public abstract class FootballClub
+    public abstract class AbstractClub
     {
         #region Protected Members
 
-        protected readonly string _name;
-        protected readonly DateTime _founded;
-        protected readonly string _owner;
-        protected readonly string _country;
-        protected readonly string _league;
-        protected readonly string _stadiumName;
-        protected readonly int _stadiumCapacity;
+        protected readonly Club _club;
 
         #endregion
 
         #region Constructor
 
-        public FootballClub(string name, DateTime founded, string owner, string country, string league, string stadiumName, int stadiumCapacity)
+        public AbstractClub(Club club)
         {
-            _name = name;
-            _founded = founded;
-            _owner = owner;
-            _country = country;
-            _league = league;
-            _stadiumName = stadiumName;
-            _stadiumCapacity = stadiumCapacity;
+            _club = club;
         }
 
         #endregion
 
-        public string DisplayInfo() => $"{_name},{_founded},{_owner}";
+        public string DisplayInfo() => $"{_club.Name},{_club.Founded},{_club.Owner}";
     }
 }

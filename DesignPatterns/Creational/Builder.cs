@@ -18,7 +18,7 @@ namespace DesignPatterns.Creational
 
         public Builder WithFoundedDate(DateTime date)
         {
-            Club.FoundedDate = date;
+            Club.Founded = date;
 
             return this;
         }
